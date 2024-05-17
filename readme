@@ -1,0 +1,30 @@
+Features:
+Block Creation: Each line of the poem is added as a block in the blockchain.
+SHA-256 Hashing: Blocks are hashed using the SHA-256 algorithm.
+Blockchain Verification: The entire blockchain is verified to ensure data integrity.
+
+Requirements
+Node.js (v12.0.0 or later)
+
+How to run the script: 
+node blockchain.js
+
+Explanation:
+1. **SHA-256 Function:** We use the `crypto` module's `createHash` method to compute the SHA-256 hash of a string concatenation of block properties.
+2. **createBlock Function:** This function:
+    - Computes the `index` and `prevHash` based on the current state of the blockchain.
+    - Gets the current timestamp.
+    - Creates a block object.
+    - Computes and assigns the hash of the block using the `sha256` function.
+    - Adds the block to the blockchain array.
+3. **Adding Poem Lines:** We loop through the poem lines and add each as a block to the blockchain.
+4. **verifyBlock Function:** This function checks:
+    - `data` is non-empty.
+    - For the genesis block, the hash must be "000000".
+    - `prevHash` is non-empty for non-genesis blocks.
+    - `index` is a non-negative integer.
+    - The `hash` matches the recomputed hash.
+    - The `prevHash` of the current block matches the `hash` of the previous block.
+5. **verifyChain Function:** This function loops through the blockchain and verifies each block using `verifyBlock`.
+
+With these functions, you can create and verify a blockchain containing lines of a poem. The final verification prints whether the blockchain is valid or not.
